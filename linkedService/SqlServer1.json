@@ -1,0 +1,16 @@
+{
+	"name": "SqlServer1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=False;data source=vendbserver.database.windows.net;initial catalog=vendb;user id=ven",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJjM2YxMGVjZC1kNzgyLTRhNGQtYjc5ZS0wZjU4NWE4MjQ1M2QiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "irselfhosted",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
