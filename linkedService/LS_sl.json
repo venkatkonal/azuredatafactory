@@ -1,0 +1,12 @@
+{
+	"name": "LS_sl",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"connectionString": "integrated security=False;encrypt=True;connection timeout=30;data source=vendbserver.database.windows.net;initial catalog=vendb;user id=ven",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQDIzREE0OTJBLUMyQjUtNEVEQS1BMTk2LUI5ODhDMDM2NUQwOV82YzI0ZTBkNS1kNzJkLTRhY2UtODY2Ni0yZTYwMmNmYTRmOGIiDQp9"
+		}
+	}
+}

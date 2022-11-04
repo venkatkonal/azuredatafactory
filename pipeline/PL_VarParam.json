@@ -1,0 +1,36 @@
+{
+	"name": "PL_VarParam",
+	"properties": {
+		"activities": [
+			{
+				"name": "assign var value",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "var1",
+					"value": {
+						"value": "@pipeline().parameters.param",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"param": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"var1": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "03102022"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-10-09T07:53:21Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

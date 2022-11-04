@@ -1,0 +1,32 @@
+{
+	"name": "DS_emptarget",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_emptarget",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "empid",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ename",
+				"type": "varchar"
+			},
+			{
+				"name": "sal",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "etl",
+			"table": "emptgt"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

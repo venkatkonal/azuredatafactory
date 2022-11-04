@@ -1,0 +1,9 @@
+{
+	"name": "adf-ws-ven",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "ea3fd911-a41e-4e6a-999e-479fcedba528",
+		"tenantId": "bdf74e74-edf8-4ca8-8a15-6aa925830dd1"
+	}
+}

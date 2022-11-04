@@ -1,0 +1,38 @@
+{
+	"name": "ds_prodcatsrc",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_prodsrc",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "product_catagory.csv",
+				"folderPath": "product",
+				"fileSystem": "adlscont"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "pid",
+				"type": "String"
+			},
+			{
+				"name": "catagery",
+				"type": "String"
+			},
+			{
+				"name": "price",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

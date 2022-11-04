@@ -1,0 +1,58 @@
+{
+	"name": "dataflow2",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DS_Empsr",
+						"type": "DatasetReference"
+					},
+					"name": "EmpSRC"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DS_emptarget",
+						"type": "DatasetReference"
+					},
+					"name": "emptarget"
+				}
+			],
+			"transformations": [
+				{
+					"name": "alterRowmergeemp"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          empid as integer,",
+				"          ename as string,",
+				"          sal as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> EmpSRC",
+				"EmpSRC alterRow(upsertIf(1==1)) ~> alterRowmergeemp",
+				"alterRowmergeemp sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          empid as integer,",
+				"          ename as string,",
+				"          sal as integer",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:false,",
+				"     updateable:false,",
+				"     upsertable:true,",
+				"     keys:['empid'],",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> emptarget"
+			]
+		}
+	}
+}

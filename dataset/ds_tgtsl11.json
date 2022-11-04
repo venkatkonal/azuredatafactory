@@ -1,0 +1,46 @@
+{
+	"name": "ds_tgtsl11",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_tgtsl",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"tgtschema": {
+				"type": "string"
+			},
+			"tgttbl": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "pid",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "pname",
+				"type": "varchar"
+			},
+			{
+				"name": "price",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": {
+				"value": "@dataset().tgtschema",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().tgttbl",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

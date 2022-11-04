@@ -1,0 +1,31 @@
+{
+	"name": "AzureSqlTable5",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_inceloadsl",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "studentid",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "studentname",
+				"type": "varchar"
+			},
+			{
+				"name": "updateddate",
+				"type": "date"
+			}
+		],
+		"typeProperties": {
+			"schema": "etl",
+			"table": "student"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

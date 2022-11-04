@@ -1,0 +1,129 @@
+{
+	"name": "PL_getmetadata",
+	"properties": {
+		"activities": [
+			{
+				"name": "Get Files",
+				"type": "GetMetadata",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "DS_getmetadata",
+						"type": "DatasetReference"
+					},
+					"fieldList": [
+						"childItems",
+						"exists",
+						"itemName",
+						"itemType",
+						"lastModified"
+					],
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
+						"enablePartitionDiscovery": false
+					},
+					"formatSettings": {
+						"type": "DelimitedTextReadSettings"
+					}
+				}
+			},
+			{
+				"name": "Set Exist",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Get Files",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "chkfileexist",
+					"value": {
+						"value": "@activity('Get Files').output.exists",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set Childitems",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Get Files",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "chkchilditems",
+					"value": {
+						"value": "@activity('Get Files').output.childItems",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "If Condition1",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "Set Exist",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@bool(variables('chkfileexist'))",
+						"type": "Expression"
+					},
+					"ifTrueActivities": [
+						{
+							"name": "file exist or not",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "yesfilexitst",
+								"value": "Yes"
+							}
+						}
+					]
+				}
+			}
+		],
+		"variables": {
+			"chkfileexist": {
+				"type": "Boolean"
+			},
+			"chkchilditems": {
+				"type": "Array"
+			},
+			"yesfilexitst": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "10102022"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-10-10T08:24:52Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

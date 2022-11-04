@@ -1,0 +1,46 @@
+{
+	"name": "PL_executepipelinelayes",
+	"properties": {
+		"activities": [
+			{
+				"name": "Load bronze to silver",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "PL_Loadbronzetosilverlayer",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Load silver to gold",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Load bronze to silver",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "PL_ldsilvertogold",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "15102022"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-10-16T11:09:34Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

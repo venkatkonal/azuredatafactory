@@ -1,0 +1,54 @@
+{
+	"name": "DS_lkupsrc",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_prodsrc",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"param_srccontainer": {
+				"type": "string"
+			},
+			"param_srcfolder": {
+				"type": "string"
+			},
+			"param_srcfile": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().param_srcfile",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().param_srcfolder",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().param_srccontainer",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

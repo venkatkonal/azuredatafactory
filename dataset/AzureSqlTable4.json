@@ -1,0 +1,27 @@
+{
+	"name": "AzureSqlTable4",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_inceloadsl",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "watermarkdataid",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "watermarkvalue",
+				"type": "date"
+			}
+		],
+		"typeProperties": {
+			"schema": "etl",
+			"table": "watermarkdata"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

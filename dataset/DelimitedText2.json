@@ -1,0 +1,54 @@
+{
+	"name": "DelimitedText2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_prodsrc",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"tgt_container": {
+				"type": "string"
+			},
+			"tgt_folder": {
+				"type": "string"
+			},
+			"tgt_file": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().tgt_file",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().tgt_folder",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().tgt_container",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

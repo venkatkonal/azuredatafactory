@@ -1,0 +1,43 @@
+{
+	"name": "pl_getmetadatafile",
+	"properties": {
+		"activities": [
+			{
+				"name": "file metadata",
+				"type": "GetMetadata",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "DS_Filemetadata",
+						"type": "DatasetReference"
+					},
+					"fieldList": [
+						"columnCount"
+					],
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
+						"enablePartitionDiscovery": false
+					},
+					"formatSettings": {
+						"type": "DelimitedTextReadSettings"
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "10102022"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-10-10T08:24:51Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

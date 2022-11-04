@@ -1,0 +1,19 @@
+{
+	"name": "ls_keyvaluttgt",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=vendbserver.database.windows.net;Initial Catalog=vendb;User ID=ven",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "LS_AzureKeyVault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "dbpasswordsecret"
+			}
+		}
+	}
+}

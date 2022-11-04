@@ -1,0 +1,13 @@
+{
+	"name": "DS_sqlconnmetadata",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_sqlconnmetadata",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

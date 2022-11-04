@@ -1,0 +1,42 @@
+{
+	"name": "DS_filtercopydatasrc",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_filter",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"dyn_filter_file_name": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().dyn_filter_file_name",
+					"type": "Expression"
+				},
+				"folderPath": "getmetadatasrc",
+				"fileSystem": "adlscont"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,57 @@
+{
+	"name": "PL_foreach",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@variables('coutntevar')",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Set variable1",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "countervarvalues",
+								"value": {
+									"value": "@item()",
+									"type": "Expression"
+								}
+							}
+						}
+					]
+				}
+			}
+		],
+		"variables": {
+			"coutntevar": {
+				"type": "Array",
+				"defaultValue": [
+					"a",
+					"b",
+					"c"
+				]
+			},
+			"countervarval": {
+				"type": "String"
+			},
+			"countervarvalues": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "10102022"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-10-10T09:25:12Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

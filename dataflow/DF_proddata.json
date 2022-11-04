@@ -1,0 +1,86 @@
+{
+	"name": "DF_proddata",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText7",
+						"type": "DatasetReference"
+					},
+					"name": "prodsrc"
+				},
+				{
+					"dataset": {
+						"referenceName": "ds_prodcatsrc",
+						"type": "DatasetReference"
+					},
+					"name": "prodcatsrc"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DS_target",
+						"type": "DatasetReference"
+					},
+					"name": "target"
+				}
+			],
+			"transformations": [
+				{
+					"name": "prodjoin"
+				},
+				{
+					"name": "select1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          pid as integer,",
+				"          pname as string,",
+				"          price as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> prodsrc",
+				"source(output(",
+				"          pid as integer,",
+				"          catagery as string,",
+				"          price as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> prodcatsrc",
+				"prodsrc, prodcatsrc join(prodsrc@pid == prodcatsrc@pid,",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> prodjoin",
+				"prodjoin select(mapColumn(",
+				"          pid = prodsrc@pid,",
+				"          product_name = pname,",
+				"          product_catagery_name = catagery,",
+				"          product_price = prodsrc@price",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          pid as string,",
+				"          pname as string,",
+				"          price as string",
+				"     ),",
+				"     partitionFileNames:['producttgt.csv'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> target"
+			]
+		}
+	}
+}

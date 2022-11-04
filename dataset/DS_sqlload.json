@@ -1,0 +1,46 @@
+{
+	"name": "DS_sqlload",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_sl",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"par_tatschema": {
+				"type": "string"
+			},
+			"par_tgttable": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "pid",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "pname",
+				"type": "varchar"
+			},
+			{
+				"name": "price",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": {
+				"value": "@dataset().par_tatschema",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().par_tgttable",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

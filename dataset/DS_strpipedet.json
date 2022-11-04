@@ -1,0 +1,13 @@
+{
+	"name": "DS_strpipedet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_sqlcon",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
